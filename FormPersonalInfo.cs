@@ -9,12 +9,12 @@ namespace RepairShop
 
         public void Display()
         {
-            DbPersonal.DisplayAndSearch("SELECT ID, Name, LastName, Email, Number FROM personal",dataGridView);
+            DbContacts.DisplayAndSearch("SELECT ID, Name, LastName, Email, Number FROM personal", dataGridView);
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
             FormPersonal form = new FormPersonal(this);
-            form.ShowDialog();  
+            form.ShowDialog();
         }
 
         private void FormPersonalInfo_Shown(object sender, EventArgs e)

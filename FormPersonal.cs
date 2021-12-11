@@ -12,21 +12,16 @@ namespace RepairShop
 {
     public partial class FormPersonal : Form
     {
+
         private readonly FormPersonalInfo _parent;
-
-        public FormPersonal()
-        {
-        }
-
         public FormPersonal(FormPersonalInfo parent)
         {
             InitializeComponent();
             _parent = parent;
         }
-
         public void Clear()
         {
-            txtName.Text = txtName.Text = txtEmail.Text = txtNumber.Text = string.Empty; 
+            txtName.Text = txtLastName.Text = txtEmail.Text = txtNumber.Text = string.Empty;    
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -53,10 +48,9 @@ namespace RepairShop
             }
             if (btnSave.Text == "Save")
             {
-                CPersonal per = new CPersonal(txtName.Text.Trim(), txtLastName.Text.Trim(), txtEmail.Text.Trim(), txtNumber.Text.Trim());
-                DbPersonal.AddPersonal(per);
+                Contacts cont = new Contacts(txtName.Text.Trim(), txtLastName.Text.Trim(), txtEmail.Text.Trim(), txtNumber.Text.Trim());
+                DbContacts.AddContacts(cont);
                 Clear();
-
             }
             _parent.Display();
         }
