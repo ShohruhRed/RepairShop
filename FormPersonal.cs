@@ -4,10 +4,22 @@
     {
 
         private readonly FormPersonalInfo _parent;
+        public string id, name, lastname, email, number;
         public FormPersonal(FormPersonalInfo parent)
         {
             InitializeComponent();
             _parent = parent;
+        }
+
+        public void UpdateInfo()
+        {
+            label1.Text = "Изменить информацию о сотруднике";
+            btnSave.Text = "Изменить";
+
+            txtName.Text = name;
+            txtLastName.Text = lastname;
+            txtEmail.Text = email;
+            txtNumber.Text = number;
         }
         public void Clear()
         {
@@ -41,6 +53,14 @@
                 Contacts cont = new Contacts(txtName.Text.Trim(), txtLastName.Text.Trim(), txtEmail.Text.Trim(), txtNumber.Text.Trim());
                 DbContacts.AddContacts(cont);
                 Clear();
+            }
+            if (btnSave.Text == "Изменить")
+            {
+                Contacts cont = new Contacts(txtName.Text.Trim(), txtLastName.Text.Trim(), txtEmail.Text.Trim(), txtNumber.Text.Trim());
+                DbContacts.UpdateContacts(cont, id);
+
+                
+
             }
             _parent.Display();
         }

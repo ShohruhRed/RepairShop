@@ -32,6 +32,7 @@ namespace RepairShop
             MySqlConnection con = GetConnection();
             MySqlCommand cmd = new MySqlCommand(sql, con); 
             cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Add("@ContactsID", MySqlDbType.VarChar).Value = con;
             cmd.Parameters.Add("@ContactsName", MySqlDbType.VarChar).Value = cont.Name;
             cmd.Parameters.Add("@ContactsLastName", MySqlDbType.VarChar).Value = cont.LastName;
             cmd.Parameters.Add("@ContactsEmail", MySqlDbType.VarChar).Value = cont.Email;
@@ -51,10 +52,11 @@ namespace RepairShop
 
         public static void UpdateContacts(Contacts cont, string id)
         {
-            string sql = "UPDATE personal SET Name = Name = @ContactsName, LastName = @ContactsLastName, Email = @ContactsEmail, Number = @ContactsNumber WHERE ID = @ContactsID";
+            string sql = "UPDATE personal SET Name = @ContactsName, LastName = @ContactsLastName, Email = @ContactsEmail, Number = @ContactsNumber WHERE ID = @ContactsID";
             MySqlConnection con = GetConnection();
             MySqlCommand cmd = new MySqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
+            cmd.Parameters.Add("@ContactsID", MySqlDbType.VarChar).Value = id;
             cmd.Parameters.Add("@ContactsName", MySqlDbType.VarChar).Value = cont.Name;
             cmd.Parameters.Add("@ContactsLastName", MySqlDbType.VarChar).Value = cont.LastName;
             cmd.Parameters.Add("@ContactsEmail", MySqlDbType.VarChar).Value = cont.Email;
@@ -74,7 +76,7 @@ namespace RepairShop
 
         public static void DeleteContacts(string id)
         {
-            string sql = "DELETE FROM personal WHERE ID = @StudentID";
+            string sql = "DELETE FROM personal WHERE ID = @ContactsID";
             MySqlConnection con = GetConnection();
             MySqlCommand cmd = new MySqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
@@ -100,6 +102,7 @@ namespace RepairShop
             MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
             DataTable tbl = new DataTable();
             adp.Fill(tbl);
+            dgv.DataSource = tbl;
             con.Close();
 
         }
