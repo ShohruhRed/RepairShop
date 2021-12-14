@@ -12,7 +12,7 @@ namespace RepairShop
 
         public void Display()
         {
-            DbContacts.DisplayAndSearch("SELECT ID, Name, LastName, Email, Number FROM personal", dataGridView);
+            DbContacts.DisplayAndSearch("SELECT ID, Name, LastName, Email, Number, Post, Subdivision, Birth FROM personal", dataGridView);
         }
         private void btnNew_Click(object sender, EventArgs e)
         {
@@ -27,7 +27,7 @@ namespace RepairShop
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            DbContacts.DisplayAndSearch("SELECT ID, Name, LastName, Email, Number FROM personal WHERE Name LIKE'%"+ txtSearch.Text + "%'", dataGridView);
+            DbContacts.DisplayAndSearch("SELECT ID, Name, LastName, Email, Number, Post, Subdivision, Birth FROM personal WHERE Name LIKE'%" + txtSearch.Text + "%'", dataGridView);
         }
 
         private void dataGridView_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -41,6 +41,9 @@ namespace RepairShop
                 form.lastname = dataGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
                 form.email = dataGridView.Rows[e.RowIndex].Cells[5].Value.ToString();
                 form.number = dataGridView.Rows[e.RowIndex].Cells[6].Value.ToString();
+                form.post = dataGridView.Rows[e.RowIndex].Cells[7].Value.ToString();
+                form.subdivision = dataGridView.Rows[e.RowIndex].Cells[8].Value.ToString();
+                form.birth = dataGridView.Rows[e.RowIndex].Cells[9].Value.ToString();
                 form.UpdateInfo();
                 form.ShowDialog();
                 return;

@@ -9,7 +9,8 @@ namespace RepairShop
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            Application.Run(new FormPersonalInfo());
+            Application.Run(new EnterForm());
+            //Application.Run(new FormPersonalInfo());
         }
     }
 }

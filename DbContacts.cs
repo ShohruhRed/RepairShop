@@ -28,7 +28,7 @@ namespace RepairShop
 
         public static void AddContacts(Contacts cont)
         {
-            string sql = "INSERT INTO personal VALUES(NULL, @ContactsName, @ContactsLastName, @ContactsEmail, @ContactsNumber, NULL)";
+            string sql = "INSERT INTO personal VALUES(NULL, @ContactsName, @ContactsLastName, @ContactsEmail, @ContactsNumber, @ContactsPost, @ContactsSubdivision, @ContactsBirth, NULL)";
             MySqlConnection con = GetConnection();
             MySqlCommand cmd = new MySqlCommand(sql, con); 
             cmd.CommandType = CommandType.Text;
@@ -37,6 +37,9 @@ namespace RepairShop
             cmd.Parameters.Add("@ContactsLastName", MySqlDbType.VarChar).Value = cont.LastName;
             cmd.Parameters.Add("@ContactsEmail", MySqlDbType.VarChar).Value = cont.Email;
             cmd.Parameters.Add("@ContactsNumber", MySqlDbType.VarChar).Value = cont.Number;
+            cmd.Parameters.Add("@ContactsPost", MySqlDbType.VarChar).Value = cont.Post;
+            cmd.Parameters.Add("@ContactsSubdivision", MySqlDbType.VarChar).Value = cont.Subdivision;
+            cmd.Parameters.Add("@ContactsBirth", MySqlDbType.VarChar).Value = cont.Birth;
             try
             {
                 cmd.ExecuteNonQuery();
@@ -52,7 +55,7 @@ namespace RepairShop
 
         public static void UpdateContacts(Contacts cont, string id)
         {
-            string sql = "UPDATE personal SET Name = @ContactsName, LastName = @ContactsLastName, Email = @ContactsEmail, Number = @ContactsNumber WHERE ID = @ContactsID";
+            string sql = "UPDATE personal SET Name = @ContactsName, LastName = @ContactsLastName, Email = @ContactsEmail, Number = @ContactsNumber, Post = @ContactsPost, Subdivision = @ContactsSubdivision, Birth = @ContactsBirth WHERE ID = @ContactsID";
             MySqlConnection con = GetConnection();
             MySqlCommand cmd = new MySqlCommand(sql, con);
             cmd.CommandType = CommandType.Text;
@@ -61,6 +64,9 @@ namespace RepairShop
             cmd.Parameters.Add("@ContactsLastName", MySqlDbType.VarChar).Value = cont.LastName;
             cmd.Parameters.Add("@ContactsEmail", MySqlDbType.VarChar).Value = cont.Email;
             cmd.Parameters.Add("@ContactsNumber", MySqlDbType.VarChar).Value = cont.Number;
+            cmd.Parameters.Add("@ContactsPost", MySqlDbType.VarChar).Value = cont.Post;
+            cmd.Parameters.Add("@ContactsSubdivision", MySqlDbType.VarChar).Value = cont.Subdivision;
+            cmd.Parameters.Add("@ContactsBirth", MySqlDbType.VarChar).Value = cont.Birth;
             try
             {
                 cmd.ExecuteNonQuery();
